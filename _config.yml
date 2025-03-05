@@ -1,3 +1,25 @@
-   theme: jekyll-theme-cayman
-   title: C4 Protocol - Cloud Computing Common Connector
-   description: A standardized protocol for cloud service providers to integrate with enterprise-grade multi-cloud management platforms
+theme: jekyll-theme-cayman
+title: C4 Protocol - Cloud Computing Common Connector
+description: A standardized protocol for cloud service providers to integrate with enterprise-grade multi-cloud management platforms
+
+# Add Mermaid support
+mermaid:
+  # Version of mermaid library
+  version: "9.1.6"
+  # Setting this to true will add the dependencies to any markdown page
+  # with a mermaid code block
+  initialize: true
+
+# Add custom JavaScript
+markdown: kramdown
+kramdown:
+  syntax_highlighter_opts:
+    disable: true
+    
+# Add custom head elements
+head_scripts:
+  - https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js
+
+# Add to your _config.yml
+after_footer_scripts:
+  - /assets/js/mermaid-init.js
