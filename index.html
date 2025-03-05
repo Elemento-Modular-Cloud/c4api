@@ -162,45 +162,238 @@
         <section id="api-reference">
             <h2>API Reference</h2>
             <p class="api-intro">Core endpoints required for C4 Protocol compliance:</p>
-            <div class="endpoint-grid">
-                <div class="endpoint-card">
-                    <h3>Core Endpoints</h3>
-                    <div class="endpoint-list">
-                        <div class="endpoint">
-                            <h4>GET /api/v1.0/running</h4>
-                            <p>List running instances with detailed status information</p>
-                            <div class="endpoint-details">
-                                <h5>Response includes:</h5>
+            
+            <div class="api-category">
+                <h3>Meson (Compute) Endpoints</h3>
+                <p>Endpoints for virtual machine management on the cloud provider. The matcher server listens on port 7777.</p>
+                
+                <div class="endpoint-grid">
+                    <div class="endpoint-card">
+                        <h4>Status & Information</h4>
+                        <div class="endpoint-list">
+                            <div class="endpoint">
+                                <h5>GET /api/v1.0/status</h5>
+                                <p>Returns details in plain text format about the Meson provider</p>
+                                <div class="endpoint-details">
+                                    <h6>Response includes:</h6>
+                                    <ul>
+                                        <li>Provider information</li>
+                                        <li>Supported services</li>
+                                        <li>Supported OS versions</li>
+                                        <li>VM configuration ranges</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="endpoint">
+                                <h5>GET /api/v1.0/statusjson</h5>
+                                <p>Returns details in JSON format about the Meson provider</p>
+                                <div class="endpoint-details">
+                                    <h6>Response includes:</h6>
+                                    <ul>
+                                        <li>Provider information</li>
+                                        <li>Supported services</li>
+                                        <li>OS configurations with ISO templates</li>
+                                        <li>CPU and memory specifications</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="endpoint-card">
+                        <h4>VM Management</h4>
+                        <div class="endpoint-list">
+                            <div class="endpoint">
+                                <h5>GET /api/v1.0/running</h5>
+                                <p>List running instances with detailed status information</p>
+                                <div class="endpoint-details">
+                                    <h6>Response includes:</h6>
+                                    <ul>
+                                        <li>Instance metadata</li>
+                                        <li>Resource allocation</li>
+                                        <li>Network configuration</li>
+                                        <li>Billing information</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="endpoint">
+                                <h5>GET /api/v1.0/canallocate</h5>
+                                <p>Check if a configuration can be allocated on the cloud provider</p>
+                                <div class="endpoint-details">
+                                    <h6>Response includes:</h6>
+                                    <ul>
+                                        <li>Allocation possibility</li>
+                                        <li>Pricing information (hourly/monthly)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="endpoint">
+                                <h5>POST /api/v1.0/register</h5>
+                                <p>Create new instances with specified configurations</p>
+                                <div class="endpoint-details">
+                                    <h6>Supports:</h6>
+                                    <ul>
+                                        <li>Custom resource allocation</li>
+                                        <li>Network configuration</li>
+                                        <li>Storage attachment</li>
+                                        <li>Authentication settings</li>
+                                        <li>Synchronous and asynchronous operations</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="endpoint">
+                                <h5>DELETE /api/v1.0/unregister</h5>
+                                <p>Remove instances and cleanup resources</p>
+                                <div class="endpoint-details">
+                                    <h6>Features:</h6>
+                                    <ul>
+                                        <li>Graceful shutdown</li>
+                                        <li>Resource cleanup</li>
+                                        <li>Billing termination</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="api-category">
+                <h3>Storage Endpoints</h3>
+                <p>Endpoints for disk/volume management on the cloud provider. The storage server listens on port 7772.</p>
+                
+                <div class="endpoint-grid">
+                    <div class="endpoint-card">
+                        <h4>Volume Management</h4>
+                        <div class="endpoint-list">
+                            <div class="endpoint">
+                                <h5>POST /api/v1.0/create</h5>
+                                <p>Create a disk on the cloud provider</p>
+                                <div class="endpoint-details">
+                                    <h6>Configurable options:</h6>
+                                    <ul>
+                                        <li>Volume size</li>
+                                        <li>Bootable flag</li>
+                                        <li>Access permissions (private/public)</li>
+                                        <li>Read-only settings</li>
+                                        <li>Shareability between machines</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="endpoint">
+                                <h5>POST /api/v1.0/info</h5>
+                                <p>Returns information about a disk by volume ID</p>
+                            </div>
+                            <div class="endpoint">
+                                <h5>POST /api/v1.0/accessible</h5>
+                                <p>Returns all visible disks for a client</p>
+                                <div class="endpoint-details">
+                                    <h6>Returns:</h6>
+                                    <ul>
+                                        <li>Private volumes created by the client</li>
+                                        <li>All public volumes</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="endpoint">
+                                <h5>POST /api/v1.0/destroy</h5>
+                                <p>Delete a disk on the cloud provider</p>
+                            </div>
+                            <div class="endpoint">
+                                <h5>GET /api/v1.0/cancreate</h5>
+                                <p>Check if a volume configuration can be created</p>
+                                <div class="endpoint-details">
+                                    <h6>Response includes:</h6>
+                                    <ul>
+                                        <li>Creation possibility</li>
+                                        <li>Pricing information</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="api-category">
+                <h3>PaaS Services</h3>
+                <p>Platform as a Service endpoints for various cloud services. Each service follows a consistent pattern of endpoints.</p>
+                
+                <div class="endpoint-grid">
+                    <div class="endpoint-card">
+                        <h4>Available PaaS Services</h4>
+                        <div class="service-list">
+                            <div class="service">
+                                <h5>S3 Object Storage</h5>
+                                <p>Managed object storage service</p>
                                 <ul>
-                                    <li>Instance metadata</li>
-                                    <li>Resource allocation</li>
-                                    <li>Network configuration</li>
-                                    <li>Billing information</li>
+                                    <li>POST /api/v1.0/s3/create</li>
+                                    <li>GET /api/v1.0/s3/info</li>
+                                    <li>GET /api/v1.0/s3/running</li>
+                                    <li>DELETE /api/v1.0/s3/delete</li>
+                                </ul>
+                            </div>
+                            <div class="service">
+                                <h5>Kubernetes (KAAS)</h5>
+                                <p>Managed Kubernetes clusters</p>
+                                <ul>
+                                    <li>POST /api/v1.0/kaas/create</li>
+                                    <li>GET /api/v1.0/kaas/info</li>
+                                    <li>GET /api/v1.0/kaas/running</li>
+                                    <li>DELETE /api/v1.0/kaas/delete</li>
+                                </ul>
+                            </div>
+                            <div class="service">
+                                <h5>Load Balancer</h5>
+                                <p>Traffic distribution service</p>
+                                <ul>
+                                    <li>POST /api/v1.0/loadbalancer/create</li>
+                                    <li>GET /api/v1.0/loadbalancer/info</li>
+                                    <li>GET /api/v1.0/loadbalancer/running</li>
+                                    <li>DELETE /api/v1.0/loadbalancer/delete</li>
+                                </ul>
+                            </div>
+                            <div class="service">
+                                <h5>Elastic IP</h5>
+                                <p>Static IP address management</p>
+                                <ul>
+                                    <li>POST /api/v1.0/elasticip/create</li>
+                                    <li>GET /api/v1.0/elasticip/info</li>
+                                    <li>GET /api/v1.0/elasticip/running</li>
+                                    <li>DELETE /api/v1.0/elasticip/delete</li>
+                                </ul>
+                            </div>
+                            <div class="service">
+                                <h5>Database as a Service (DBaaS)</h5>
+                                <p>Managed database instances</p>
+                                <ul>
+                                    <li>POST /api/v1.0/dbaas/create</li>
+                                    <li>GET /api/v1.0/dbaas/info</li>
+                                    <li>GET /api/v1.0/dbaas/running</li>
+                                    <li>DELETE /api/v1.0/dbaas/delete</li>
                                 </ul>
                             </div>
                         </div>
-                        <div class="endpoint">
-                            <h4>POST /api/v1.0/register</h4>
-                            <p>Create new instances with specified configurations</p>
-                            <div class="endpoint-details">
-                                <h5>Supports:</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="api-category">
+                <h3>SaaS Services</h3>
+                <p>Software as a Service endpoints for managed applications.</p>
+                
+                <div class="endpoint-grid">
+                    <div class="endpoint-card">
+                        <h4>Available SaaS Services</h4>
+                        <div class="service-list">
+                            <div class="service">
+                                <h5>Jupyter Notebook</h5>
+                                <p>Interactive computing environment</p>
                                 <ul>
-                                    <li>Custom resource allocation</li>
-                                    <li>Network configuration</li>
-                                    <li>Storage attachment</li>
-                                    <li>Metadata management</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="endpoint">
-                            <h4>DELETE /api/v1.0/unregister</h4>
-                            <p>Remove instances and cleanup resources</p>
-                            <div class="endpoint-details">
-                                <h5>Features:</h5>
-                                <ul>
-                                    <li>Graceful shutdown</li>
-                                    <li>Resource cleanup</li>
-                                    <li>Billing termination</li>
+                                    <li>POST /api/v1.0/jupyter/create</li>
+                                    <li>GET /api/v1.0/jupyter/info</li>
+                                    <li>GET /api/v1.0/jupyter/running</li>
+                                    <li>DELETE /api/v1.0/jupyter/delete</li>
                                 </ul>
                             </div>
                         </div>
@@ -212,6 +405,30 @@
                     <a href="https://github.com/Elemento-Modular-Cloud/c4api/blob/main/c4.yml" class="cta-button">Download OpenAPI</a>
                 </div>
             </div>
+            
+            <div class="api-features">
+                <h3>Common API Features</h3>
+                <div class="feature-cards">
+                    <div class="feature-card">
+                        <h4>Asynchronous Operations</h4>
+                        <p>Many endpoints support both synchronous and asynchronous operations via the <code>async</code> header:</p>
+                        <ul>
+                            <li>When set to <code>true</code>, the response includes a <code>poolingURL</code> to check operation status</li>
+                            <li>When set to <code>false</code>, the operation completes before responding</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>Consistent Response Format</h4>
+                        <p>All API responses follow a consistent JSON structure with:</p>
+                        <ul>
+                            <li>Resource identifiers (UUIDs)</li>
+                            <li>Resource metadata</li>
+                            <li>Operation status</li>
+                            <li>Error information when applicable</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section id="deployment">
@@ -219,7 +436,7 @@
             <div class="deployment-steps">
                 <h3>Quick Start</h3>
                 <p class="setup-intro">Begin integration with our Docker-based development environment:</p>
-                <pre><code>git clone --recurse-submodules <http_repo>
+                <pre><code>git clone --recurse-submodules http://github.com/elemento-modular-cloud/c4-protocol
 docker compose up --build -d</code></pre>
                 
                 <h3>Configuration Template</h3>
@@ -232,6 +449,20 @@ docker compose up --build -d</code></pre>
                 <div class="config-notes">
                     <p>Additional configuration options available in the full documentation</p>
                 </div>
+                
+                <h3>Implementation Requirements</h3>
+                <p>To implement the C4 Protocol, your service must provide:</p>
+                <ul class="implementation-requirements">
+                    <li>REST API endpoints following the documented specifications</li>
+                    <li>Support for both synchronous and asynchronous operations</li>
+                    <li>Consistent error handling and status reporting</li>
+                    <li>Resource lifecycle management (create, read, delete)</li>
+                </ul>
+                
+                <h3>Testing Your Implementation</h3>
+                <p>Verify your implementation with our compliance testing suite:</p>
+                <pre><code>cd c4-protocol/tests
+python -m pytest test_compliance.py --provider=<your_provider_id></code></pre>
             </div>
         </section>
     </main>
@@ -252,6 +483,15 @@ docker compose up --build -d</code></pre>
                     <li><a href="#case-studies">Success Stories</a></li>
                     <li><a href="#blog">Blog</a></li>
                     <li><a href="#support">Provider Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>API Categories</h4>
+                <ul>
+                    <li><a href="#compute">Compute (Meson)</a></li>
+                    <li><a href="#storage">Storage</a></li>
+                    <li><a href="#paas">PaaS Services</a></li>
+                    <li><a href="#saas">SaaS Services</a></li>
                 </ul>
             </div>
         </div>
