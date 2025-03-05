@@ -1,0 +1,287 @@
+openapi: 3.0.0
+info:
+  title: AtomOS
+  version: 1.0.0
+servers:
+  - url: http://{{server}}:7772
+  - url: http://{{server}}:7777
+tags:
+  - name: AtomOS
+  - name: AtomOS > storage
+  - name: AtomOS > matcher
+paths:
+  //:
+    get:
+      tags:
+        - AtomOS > matcher
+      summary: ping
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1.0/cancreate:
+    get:
+      tags:
+        - AtomOS > storage
+      summary: cancreate
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1.0/info:
+    post:
+      tags:
+        - AtomOS > storage
+      summary: info
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: '"{\n   \"volume_id\": \"c386eca8330b41b2afec9b466a578443\"\n}"'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1.0/create:
+    post:
+      tags:
+        - AtomOS > storage
+      summary: create
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n   \"creatorID\": \"ffffffffffffffffffffffffffffffff\",\n  
+                \"name\": \"volume\",\n   \"private\": false,\n   \"readonly\":
+                false,\n   \"shareable\": false,\n   \"bootable\": true,\n  
+                \"size\": 100\n}"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1.0/destroy:
+    post:
+      tags:
+        - AtomOS > storage
+      summary: destroy
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: '"{\n   \"volumeID\": \"469f6fbb1d624197b8549982e3a642dc\"\n}"'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1.0/accessible:
+    post:
+      tags:
+        - AtomOS > storage
+      summary: accessible
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: '"{\n   \"client_uid\": \"{{client_id}}\"\n}"'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1.0/export:
+    post:
+      tags:
+        - AtomOS > storage
+      summary: export
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n   \"client_uid\": \"{{client_id}}\",\n   \"volume_id\":
+                \"1d33c321bf1449d4a9fbc5f960ac5035\"\n}"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1.0/unexport:
+    post:
+      tags:
+        - AtomOS > storage
+      summary: unexport
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              example: >-
+                "{\n   \"client_uid\": \"{{client_id}}\",\n   \"volume_id\":
+                \"1d33c321bf1449d4a9fbc5f960ac5035\"\n}"
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1.0/status:
+    get:
+      tags:
+        - AtomOS > matcher
+      summary: status
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1.0/statusjson:
+    get:
+      tags:
+        - AtomOS > matcher
+      summary: statusjson
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1.0/canallocate:
+    get:
+      tags:
+        - AtomOS > matcher
+      summary: canallocate
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1.0/register:
+    post:
+      tags:
+        - AtomOS > matcher
+      summary: register
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: |-
+                {
+                    "client_uid": {{client_id}},
+                    "vm_name": "test",
+                    "req": {
+                        "py/object": "common.lib.system.systemrequirements.systemrequirements",
+                        "cpu": {
+                            "py/object": "common.lib.components.cpu.cpurequirements.cpurequirements",
+                            "slots": 2,
+                            "fullPhysical": true,
+                            "maxOverprovision": 1,
+                            "min_frequency": "0.5",
+                            "arch": [
+                                "X86_64"
+                            ],
+                            "flags": []
+                        },
+                        "mem": {
+                            "py/object": "common.lib.components.memory.memrequirements.memrequirements",
+                            "capacity": 4096,
+                            "requireECC": 0
+                        },
+                        "pci": {
+                            "py/object": "common.lib.components.pcidev.pcirequirements.pcirequirements",
+                            "devices": {}
+                        },
+                        "misc": {
+                            "py/object": "common.lib.components.misc.miscrequirements.miscrequirements",
+                            "os_family": "linux",
+                            "os_flavour": "debian",
+                            "manufacturer": "Any"
+                        }
+                    },
+                    "volumes": [
+                        {
+                            "bootable": false,
+                            "creatorID": "5e96afa52c1a53348adc5c5663978058",
+                            "name": "a",
+                            "private": false,
+                            "readonly": false,
+                            "shareable": false,
+                            "size": 50000000000,
+                            "volumeID": "c386eca8330b41b2afec9b466a578443"
+                        }
+                    ]
+                }
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1.0/unregister:
+    delete:
+      tags:
+        - AtomOS > matcher
+      summary: unregister
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1.0/running:
+    get:
+      tags:
+        - AtomOS > matcher
+      summary: running
+      parameters:
+        - name: Content-Type
+          in: header
+          schema:
+            type: string
+          example: application/json
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v1.0/host/status:
+    get:
+      tags:
+        - AtomOS
+      summary: Stats
+      parameters:
+        - name: User-Agent
+          in: header
+          schema:
+            type: string
+          example: insomnia/10.2.0
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
