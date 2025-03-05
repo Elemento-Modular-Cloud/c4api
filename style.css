@@ -1,0 +1,210 @@
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --accent-color: #e74c3c;
+    --background-color: #f5f6fa;
+    --text-color: #2c3e50;
+    --card-background: #ffffff;
+    --code-background: #282c34;
+    --success-color: #2ecc71;
+    --warning-color: #f1c40f;
+    --border-radius: 12px;
+    --transition-speed: 0.3s;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --hover-transform: translateY(-2px);
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 6rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.2) 100%);
+    pointer-events: none;
+}
+
+.header-cta {
+    margin-top: 2rem;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--transition-speed);
+    margin: 0.5rem;
+}
+
+.cta-button:first-child {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.cta-button.secondary {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+}
+
+.cta-button:hover {
+    transform: var(--hover-transform);
+    box-shadow: var(--box-shadow);
+}
+
+.value-grid, .provider-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.value-card, .provider-card {
+    background-color: var(--card-background);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    transition: all var(--transition-speed);
+}
+
+.value-card:hover, .provider-card:hover {
+    transform: var(--hover-transform);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.provider-features {
+    margin-top: 1.5rem;
+}
+
+.provider-features ul {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+.implementation-details {
+    margin-top: 1.5rem;
+    background-color: var(--code-background);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+}
+
+pre code {
+    color: #e6e6e6;
+    display: block;
+    overflow-x: auto;
+}
+
+.endpoint {
+    background-color: var(--card-background);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--secondary-color);
+    transition: all var(--transition-speed);
+}
+
+.endpoint:hover {
+    transform: var(--hover-transform);
+    box-shadow: var(--box-shadow);
+}
+
+.subtitle {
+    color: #ecf0f1;
+    font-size: 1.2rem;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+section {
+    margin-bottom: 3rem;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.feature-card {
+    background-color: var(--card-background);
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.endpoint-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.endpoint h4 {
+    margin: 0;
+    color: var(--secondary-color);
+}
+
+footer {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 3rem 2rem;
+    margin-top: 4rem;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 4rem 1rem;
+    }
+    
+    .value-grid, .provider-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .cta-button {
+        display: block;
+        margin: 1rem auto;
+        max-width: 280px;
+    }
+    
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+}
