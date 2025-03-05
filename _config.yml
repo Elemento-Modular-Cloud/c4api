@@ -10,16 +10,27 @@ mermaid:
   # with a mermaid code block
   initialize: true
 
-# Add custom JavaScript
+# Configure markdown processor
 markdown: kramdown
 kramdown:
   syntax_highlighter_opts:
-    disable: true
-    
+    disable: false
+  # Enable mermaid diagrams in markdown
+  math_engine: mathjax
+  parse_block_html: true
+
 # Add custom head elements
 head_scripts:
-  - https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js
+  - https://cdn.jsdelivr.net/npm/mermaid@9.1.6/dist/mermaid.min.js
 
 # Add to your _config.yml
 after_footer_scripts:
   - /assets/js/mermaid-init.js
+
+# Enable plugins
+plugins:
+  - jekyll-mermaid
+
+# Mermaid configuration
+mermaid_config:
+  theme: default
