@@ -25,7 +25,7 @@ jobs:
 
       - name: Build live version of site
         run: |
-          JEKYLL_ENV=production bundle exec jekyll build  --baseurl "${{ steps.pages.outputs.base_path || '' }}"
+          JEKYLL_ENV=production bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path || '' }}"
 
       - name: Deploy documentation
         uses: JamesIves/github-pages-deploy-action@v4

@@ -1,3 +1,7 @@
+---
+layout: default
+title: C4 Protocol - Cloud Computing Common Connector
+---
 # C4 Protocol - Cloud Computing Common Connector
 
 A standardized protocol for cloud service providers to integrate with enterprise-grade multi-cloud management platforms. Simplify your integration, expand your market reach.
@@ -7,14 +11,14 @@ A standardized protocol for cloud service providers to integrate with enterprise
 The C4 Protocol (Cloud Computing Common Connector) provides a universal API specification that enables cloud service providers to integrate with multi-cloud management platforms. This repository hosts the official API specifications and documentation website.
 
 Are you a CSP? Come onboard!
-Joining us is quite simple, here’s everything you need to know to join the Biggest Cloud resource marketplace.
+Joining us is quite simple, here's everything you need to know to join the Biggest Cloud resource marketplace.
 
 
-Let’s start with some general details.
+Let's start with some general details.
  
 
 # C4, does it explode?
-The Elemento C4 protocol is a standardized protocol that allows CSP to communicate with Dynamo’s environment which is used through Mesons to onboard new cloud providers from anywhere!
+The Elemento C4 protocol is a standardized protocol that allows CSP to communicate with Dynamo's environment which is used through Mesons to onboard new cloud providers from anywhere!
 
 
 ## Architecture
