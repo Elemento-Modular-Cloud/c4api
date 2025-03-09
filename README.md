@@ -21,7 +21,7 @@ The Elemento C4 protocol is a standardized protocol that allows CSP to communica
 
 ### C4 Protocol Positioning
 
-```mermaid
+```mermaid!
 graph TD
     Enterprise[Enterprise Customers] --> MCM[Multi-Cloud Management Platforms]
     MCM --> C4[C4 Protocol]
@@ -42,7 +42,7 @@ graph TD
 
 ### Communication Flow
 
-```mermaid
+```mermaid!
 sequenceDiagram
     participant Client as Enterprise Client
     participant MCM as Multi-Cloud Manager
@@ -59,7 +59,7 @@ sequenceDiagram
 
 ### Service Architecture
 
-```mermaid
+```mermaid!
 flowchart LR
     subgraph "C4 Protocol Services"
         Meson[Meson - Compute\nPort 7777]
