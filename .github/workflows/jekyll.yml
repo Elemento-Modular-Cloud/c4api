@@ -55,9 +55,20 @@ jobs:
           </script>
           </body>
           EOL
-          # Replace the closing </body> tag with our script content in all HTML files
           
-          find $GITHUB_WORKSPACE/_site -name "*.html" -type f -exec sed -i "s|</body>|$(cat mermaid_script.txt)|g" {} \;
+          # Use a different approach to insert the script before </body>
+          for file in $(find $GITHUB_WORKSPACE/_site -name "*.html" -type f); do
+            # Create a temporary file
+            awk '{
+              if (/<\/body>/) {
+                system("cat mermaid_script.txt");
+              } else {
+                print;
+              }
+            }' $file > temp.html
+            # Replace the original file with the modified one
+            mv temp.html $file
+          done
 
       - name: Deploy documentation
         uses: JamesIves/github-pages-deploy-action@v4
