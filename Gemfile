@@ -24,5 +24,6 @@ gem "minima"
 
 # If you have any plugins, put them here!
 group :jekyll_plugins do
+  gem "jekyll-theme-cayman"
   gem "jekyll-spaceship"
 end

@@ -5,6 +5,5 @@ repository: Elemento-Modular-Cloud/c4api
 
 # Configure markdown processor
 markdown: kramdown
-theme: jekyll-theme-cayman
 plugins:
   - jekyll-spaceship
