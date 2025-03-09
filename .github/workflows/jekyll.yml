@@ -36,4 +36,10 @@ jobs:
           find $GITHUB_WORKSPACE/_site -name "*.html" -type f -exec sed -i 's/<pre><code class="language-mermaid">/<pre class="mermaid">/g' {} \;
           find $GITHUB_WORKSPACE/_site -name "*.html" -type f -exec sed -i 's/<\/code><\/pre>/<\/pre>/g' {} \;
 
+      - name: Deploy documentation
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: _site
+          token: ${{ secrets.GITHUB_TOKEN }}
       
