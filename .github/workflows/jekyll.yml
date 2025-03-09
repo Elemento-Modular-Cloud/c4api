@@ -36,6 +36,23 @@ jobs:
           find $GITHUB_WORKSPACE/_site -name "*.html" -type f -exec sed -i 's/<pre><code class="language-mermaid">/<pre class="mermaid">/g' {} \;
           find $GITHUB_WORKSPACE/_site -name "*.html" -type f -exec sed -i 's/<\/code><\/pre>/<\/pre>/g' {} \;
 
+      - name: Add Mermaid JavaScript to HTML files
+        run: |
+          # Create a temporary file with the script content
+          cat > mermaid_script.txt << 'EOL'
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+
+<!-- Initialize Mermaid -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    mermaid.initialize({startOnLoad:true});
+  });
+</script>
+</body>
+EOL
+          # Replace the closing </body> tag with our script content in all HTML files
+          find $GITHUB_WORKSPACE/_site -name "*.html" -type f -exec sed -i 's|</body>|'"$(cat mermaid_script.txt)"'|g' {} \;
+
       - name: Deploy documentation
         uses: JamesIves/github-pages-deploy-action@v4
         with:
