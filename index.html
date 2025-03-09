@@ -26,7 +26,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="stylesheet" href="/c4api/assets/css/style.css?v=99d23fe0f315548c7437d3d225c14b73b0ac218d">
+    <link rel="stylesheet" href="/c4api/assets/css/style.css?v=0100de43eba99a6603b7973e19d531d95cd5bb21">
     <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
 
 <!-- Setup Google Analytics -->
@@ -72,7 +72,7 @@ Joining us is quite simple, here’s everything you need to know to join the Big
 
 <h3 id="c4-protocol-positioning">C4 Protocol Positioning</h3>
 
-<pre><code class="language-mermaid">graph TD
+<pre class="mermaid">graph TD
     Enterprise[Enterprise Customers] --&gt; MCM[Multi-Cloud Management Platforms]
     MCM --&gt; C4[C4 Protocol]
     C4 --&gt; CSP1[Cloud Service Provider 1]
@@ -88,11 +88,11 @@ Joining us is quite simple, here’s everything you need to know to join the Big
     class MCM platform;
     class C4 protocol;
     class CSP1,CSP2,CSP3 provider;
-</code></pre>
+</pre>
 
 <h3 id="communication-flow">Communication Flow</h3>
 
-<pre><code class="language-mermaid">sequenceDiagram
+<pre class="mermaid">sequenceDiagram
     participant Client as Enterprise Client
     participant MCM as Multi-Cloud Manager
     participant C4 as C4 Protocol API
@@ -104,11 +104,11 @@ Joining us is quite simple, here’s everything you need to know to join the Big
     CSP-&gt;&gt;C4: Return provider-specific response
     C4-&gt;&gt;MCM: Normalize response
     MCM-&gt;&gt;Client: Present unified result
-</code></pre>
+</pre>
 
 <h3 id="service-architecture">Service Architecture</h3>
 
-<pre><code class="language-mermaid">flowchart LR
+<pre class="mermaid">flowchart LR
     subgraph "C4 Protocol Services"
         Meson[Meson - Compute\nPort 7777]
         Storage[Storage\nPort 7772]
@@ -132,7 +132,7 @@ Joining us is quite simple, here’s everything you need to know to join the Big
     PaaS --&gt; DB
     PaaS --&gt; LB
     SaaS --&gt; Apps[Managed Applications]
-</code></pre>
+</pre>
 
 <h2 id="strategic-value-proposition">Strategic Value Proposition</h2>
 
