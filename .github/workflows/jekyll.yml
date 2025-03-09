@@ -47,4 +47,11 @@ jobs:
           bundler_ver: ''            # Default is compatible bundler version (~>2.5.0)
           cname: ''                  # Default is to not use a cname
           actor: ''                  # Default is the GITHUB_ACTOR
-          pre_build_commands: ''     # Installing additional dependencies (Arch Linux)
+          pre_build_commands: |
+            # Add Mermaid.js to the site
+            mkdir -p assets/js
+            wget -O assets/js/mermaid.min.js https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js
+            # Create a custom layout or include file if needed
+            if [ ! -d _includes ]; then mkdir _includes; fi
+            echo '<script src="{{ site.baseurl }}/assets/js/mermaid.min.js"></script>' > _includes/mermaid.html
+            echo '<script>mermaid.initialize({startOnLoad:true});</script>' >> _includes/mermaid.html
