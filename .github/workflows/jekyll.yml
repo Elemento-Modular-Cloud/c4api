@@ -48,6 +48,8 @@ jobs:
           cname: ''                  # Default is to not use a cname
           actor: ''                  # Default is the GITHUB_ACTOR
           pre_build_commands: |
+            # Install wget
+            apt-get update && apt-get install -y wget
             # Add Mermaid.js to the site
             mkdir -p assets/js
             wget -O assets/js/mermaid.min.js https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js
