@@ -31,6 +31,11 @@ jobs:
         run: |
           JEKYLL_ENV=production bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path || '' }}"
 
+      - name: Print HTML files found for debugging
+        run: |
+          echo "Listing HTML files in _site directory:"
+          find $GITHUB_WORKSPACE/_site -name "*.html" -type f | sort
+
       - name: Fix Mermaid diagrams in HTML
         run: |
           find $GITHUB_WORKSPACE/_site -name "*.html" -type f -exec sed -i 's/<pre><code class="language-mermaid">/<pre class="mermaid">/g' {} \;
@@ -51,6 +56,7 @@ jobs:
           </body>
           EOL
           # Replace the closing </body> tag with our script content in all HTML files
+          
           find $GITHUB_WORKSPACE/_site -name "*.html" -type f -exec sed -i 's|</body>|'"$(cat mermaid_script.txt)"'|g' {} \;
 
       - name: Deploy documentation
