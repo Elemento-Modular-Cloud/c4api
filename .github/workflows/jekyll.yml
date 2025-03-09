@@ -23,7 +23,7 @@ jobs:
 
       - name: Get Pages url
         id: pages
-        uses: actions/configure-pages@v2
+        uses: actions/configure-pages@latest
         with:
           enablement: false
 
@@ -37,15 +37,15 @@ jobs:
           find _site -name "*.html" -type f -exec sed -i 's/<\/code><\/pre>/<\/pre>/g' {} \;
 
       - name: Setup Pages
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@latest
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@latest
         with:
           path: '_site'
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@latest
 
       
