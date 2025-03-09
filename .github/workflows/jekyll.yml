@@ -51,7 +51,3 @@ jobs:
             # Add Mermaid.js to the site using curl instead of wget
             mkdir -p assets/js
             curl -L https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js -o assets/js/mermaid.min.js
-            # Create a custom layout or include file if needed
-            if [ ! -d _includes ]; then mkdir _includes; fi
-            echo '<script src="{{ site.baseurl }}/assets/js/mermaid.min.js"></script>' > _includes/mermaid.html
-            echo '<script>mermaid.initialize({startOnLoad:true});</script>' >> _includes/mermaid.html
