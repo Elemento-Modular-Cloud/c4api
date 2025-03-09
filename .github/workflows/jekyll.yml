@@ -21,6 +21,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-cache-
 
+      # Create a Gemfile if it doesn't exist
+      - name: Create Gemfile if missing
+        run: |
+          if [ ! -f Gemfile ]; then
+            echo "source 'https://rubygems.org'" > Gemfile
+            echo "gem 'jekyll'" >> Gemfile
+            echo "gem 'github-pages', group: :jekyll_plugins" >> Gemfile
+            echo "gem 'jekyll-spaceship'" >> Gemfile
+          fi
+      
       # Use GitHub Deploy Action to build and deploy to Github
       # For latest version: `jeffreytse/jekyll-deploy-action@master`
       - uses: jeffreytse/jekyll-deploy-action@v0.6.0
