@@ -8,6 +8,10 @@ on:
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
     steps:
       - uses: actions/checkout@v4
 
@@ -27,9 +31,21 @@ jobs:
         run: |
           JEKYLL_ENV=production bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path || '' }}"
 
-      - name: Deploy documentation
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Fix Mermaid diagrams in HTML
+        run: |
+          find _site -name "*.html" -type f -exec sed -i 's/<pre><code class="language-mermaid">/<pre class="mermaid">/g' {} \;
+          find _site -name "*.html" -type f -exec sed -i 's/<\/code><\/pre>/<\/pre>/g' {} \;
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
         with:
-          branch: gh-pages
-          folder: _site
-          token: ${{ secrets.GITHUB_TOKEN }}
+          path: '_site'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+
+      
