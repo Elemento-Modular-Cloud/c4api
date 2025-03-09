@@ -11,9 +11,4 @@ mermaid:
   initialize: true
 
 # Configure markdown processor
-markdown: kramdown
-kramdown:
-  syntax_highlighter_opts:
-    disable: false
-  parse_block_html: true
-  mermaid: true
+markdown: GFM
