@@ -33,7 +33,7 @@ jobs:
 
       - name: Fix Mermaid diagrams in HTML
         run: |
-          find "${{ steps.pages.outputs.base_path || '' }}" -name "*.html" -type f -exec sed -i 's/<pre><code class="language-mermaid">/<pre class="mermaid">/g' {} \;
-          find "${{ steps.pages.outputs.base_path || '' }}" -name "*.html" -type f -exec sed -i 's/<\/code><\/pre>/<\/pre>/g' {} \;
+          find ."${{ steps.pages.outputs.base_path || '' }}" -name "*.html" -type f -exec sed -i 's/<pre><code class="language-mermaid">/<pre class="mermaid">/g' {} \;
+          find ."${{ steps.pages.outputs.base_path || '' }}" -name "*.html" -type f -exec sed -i 's/<\/code><\/pre>/<\/pre>/g' {} \;
 
       
