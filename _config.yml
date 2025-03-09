@@ -1,9 +1,7 @@
 theme: jekyll-theme-cayman
 title: C4 Protocol - Cloud Computing Common Connector
 description: A standardized protocol for cloud service providers to integrate with enterprise-grade multi-cloud management platforms
-repository:
-  url: https://github.com/Elemento-Modular-Cloud/c4api
-  branch: main
+repository: Elemento-Modular-Cloud/c4api
 
 # Configure markdown processor
 markdown: GFM
