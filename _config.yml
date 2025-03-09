@@ -12,3 +12,13 @@ mermaid:
 
 # Configure markdown processor
 markdown: GFM
+
+# Add plugins for Jekyll
+plugins:
+  - jekyll-mermaid
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# Jekyll-mermaid plugin configuration
+jekyll-mermaid:
+  src: 'https://cdn.jsdelivr.net/npm/mermaid@9.1.6/dist/mermaid.min.js'
